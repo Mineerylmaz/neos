@@ -12,7 +12,6 @@ const womenImages = [
   "/images/kadin/kadin5.jpeg",
   "/images/kadin/kadin6.jpeg",
   "/images/kadin/kadin7.jpeg",
-  "/images/kadin/kadin8.jpeg",
   "/images/kadin/kadin9.jpeg",
   "/images/kadin/kadin10.jpeg",
   "/images/kadin/kadin11.jpeg",
@@ -319,7 +318,7 @@ const StripItem = styled.div`
     height: 100%;
     display: block;
     object-fit: cover;
-    object-position: center 85%;  /* 👈 kadrajı aşağı kaydır: botlar daha çok görünür */
+    object-position: center 100%;  /* 👈 kadrajı aşağı kaydır: botlar daha çok görünür */
     transition:
       transform 0.45s ease,
       filter 0.45s ease;
