@@ -1,3 +1,4 @@
+// src/pages/Home.jsx
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
@@ -6,21 +7,39 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
 
+/* 👇 TÜM RESİMLER İÇİN KÜÇÜK YARDIMCI KOMPONENT
+   - priority = true olanlar: hero gibi ilk ekranda görünenler (eager)
+   - diğerleri: lazy yüklenir
+*/
+const NeosImage = ({ src, alt, priority = false, className, ...rest }) => {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading={priority ? "eager" : "lazy"}
+      decoding="async"
+      className={className}
+      style={{ display: "block" }}
+      {...rest}
+    />
+  );
+};
+
 const Home = () => {
   // Farklı renk bot görsellerin
   const heroImages = [
-    "/images/heroimg1.png",
-    "/images/heroimg2.png",
-    "/images/heroimg3.png",
+    "/images/heroimg1.webp", // Mümkünse webp / sıkıştırılmış jpg kullan
+    "/images/heroimg2.webp",
+    "/images/heroimg3.webp",
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Her 5 saniyede bir resmi değiştir
+  // Her 3 saniyede bir resmi değiştir
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % heroImages.length);
-    }, 3000); // 5 sn
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [heroImages.length]);
@@ -31,17 +50,18 @@ const Home = () => {
 
       {/* HERO */}
       <HeroSection>
-        {/* Arka plan bot slideshow */}
+        {/* Arka plan bot slideshow artık <img> ile */}
         <HeroImageWrapper>
           <AnimatePresence mode="wait">
             <HeroImageLayer
               key={heroImages[currentIndex]}
-              $bg={heroImages[currentIndex]}
+              src={heroImages[currentIndex]}
+              alt="NEOS bot"
+              priority
               initial={{ opacity: 0, scale: 1.02 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.7, ease: "easeInOut" }}
-
             />
           </AnimatePresence>
         </HeroImageWrapper>
@@ -79,7 +99,6 @@ const Home = () => {
               <PrimaryButton as={Link} to="/koleksiyon">
                 KOLEKSİYONU GÖR <ChevronRight size={18} />
               </PrimaryButton>
-
             </ButtonGroup>
           </HeroTextContent>
         </HeroInner>
@@ -141,22 +160,20 @@ const Home = () => {
         <div className="title-row">
           <h2>ÖNE ÇIKAN KOLEKSİYONLAR</h2>
           <ViewAll to="/koleksiyon">TÜMÜNÜ GÖR</ViewAll>
-
         </div>
-
 
         <CardGrid>
           <CollectionCard
             label="YAĞMUR BOTLARI"
-            style={{ backgroundImage: 'url("/images/homekolek1.jpeg")' }}
+            src="/images/homekolek1.webp"
           />
           <CollectionCard
             label="KADIN MODELLERİ"
-            style={{ backgroundImage: 'url("/images/homekolek2.jpeg")' }}
+            src="/images/homekolek2.webp"
           />
           <CollectionCard
             label="KOLEKSİYON 2025"
-            style={{ backgroundImage: 'url("/images/homekolek3.jpeg")' }}
+            src="/images/homekolek3.webp"
           />
         </CardGrid>
       </CollectionSection>
@@ -174,6 +191,7 @@ const PageContainer = styled.div`
   width: 100%;
   background: #ffffff;
 `;
+
 const ViewAll = styled(Link)`
   font-weight: 700;
   font-size: 0.85rem;
@@ -182,7 +200,6 @@ const ViewAll = styled(Link)`
   text-decoration: none;
   color: #111;
 `;
-
 
 /* HERO */
 
@@ -194,7 +211,6 @@ const HeroSection = styled.section`
   background: #e3d5c4;
   overflow: hidden;
 
-  /* altta yumuşak geçiş aynı kalsın */
   &::after {
     content: "";
     position: absolute;
@@ -220,7 +236,6 @@ const HeroSection = styled.section`
   }
 `;
 
-/* Slide-show container (tam ekran, tıklanamaz) */
 const HeroImageWrapper = styled.div`
   position: absolute;
   inset: 0;
@@ -228,31 +243,29 @@ const HeroImageWrapper = styled.div`
   pointer-events: none;
 `;
 
-/* Her bir slide – eski HeroImageLayer CSS'ini buraya taşıdık */
-const HeroImageLayer = styled(motion.div)`
+/* Artık background-image değil, gerçek <img> */
+const HeroImageLayer = styled(motion(NeosImage))`
   position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   background-color: #e3d5c4;
-  background-image: url(${(props) => props.$bg});
-  background-repeat: no-repeat;
 
   /* Desktop */
-  background-position: 48% center;
-  background-size: 92vh auto;
+  object-position: 48% center;
 
   @media (min-width: 1440px) {
-    background-size: 100vh auto;
-    background-position: 92% center;
+    object-position: 92% center;
   }
 
   @media (max-width: 992px) {
-    background-size: 80vh auto;
-    background-position: center bottom;
+    object-position: center bottom;
   }
 
   @media (max-width: 768px) {
-    background-size: 115% auto;
-    background-position: center 78%;
+    object-fit: cover;
+    object-position: center 78%;
     opacity: 0.26;
   }
 `;
@@ -301,26 +314,24 @@ const HeroTextContent = styled.div`
     max-width: 440px;
   }
 
-  /* SADECE MOBİL İÇİN AYAR */
   @media (max-width: 768px) {
     max-width: 100%;
     text-align: center;
 
     h1 {
       font-size: clamp(2.3rem, 8vw, 3rem);
-      color: #f9fafb; /* daha açık yazı rengi */
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25); /* okunurluk için hafif gölge */
+      color: #f9fafb;
+      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
     }
 
     p {
       margin-left: auto;
       margin-right: auto;
-      color: #f3f4f6; /* açık gri-beyaz */
+      color: #f3f4f6;
       text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
     }
   }
 `;
-
 
 const ButtonGroup = styled(motion.div)`
   display: flex;
@@ -353,8 +364,6 @@ const PrimaryButton = styled.button`
   }
 `;
 
-/* --- alttaki kısımların hiçbiri değişmedi, aynen bırakıyorum --- */
-
 const SecondaryButton = styled.button`
   background: #ffffff;
   color: #111827;
@@ -375,7 +384,7 @@ const SecondaryButton = styled.button`
   }
 `;
 
-/* MANIFESTO, KOLEKSİYON vb. aşağısı senin kodundakiyle aynı, kopyaladım */
+/* MANIFESTO, KOLEKSİYON vb. aşağısı */
 
 const ManifestoSection = styled.section`
   padding: 120px 10%;
@@ -489,13 +498,6 @@ const CollectionSection = styled.section`
       font-size: 1.8rem;
       font-weight: 900;
     }
-
-    .view-all {
-      font-weight: 700;
-      font-size: 0.85rem;
-      border-bottom: 2px solid #000;
-      cursor: pointer;
-    }
   }
 
   @media (max-width: 768px) {
@@ -519,32 +521,52 @@ const CardGrid = styled.div`
   }
 `;
 
-const CollectionCard = styled.div`
+/* Koleksiyon kartlarını artık gerçek img + lazy ile yapıyoruz */
+const CollectionCardShell = styled.div`
   height: 430px;
   border-radius: 28px;
   position: relative;
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.35s ease;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: #000;
 
   &:hover {
     transform: translateY(-6px) scale(1.01);
   }
+`;
 
-  &::after {
-    content: "${(props) => props.label}";
-    position: absolute;
-    bottom: 24px;
-    left: 24px;
-    background: rgba(0, 0, 0, 0.35);
-    padding: 10px 20px;
-    border-radius: 999px;
-    font-size: 0.8rem;
-    font-weight: 800;
-    color: #fff;
-    backdrop-filter: blur(4px);
+const CollectionImageWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 `;
+
+const CollectionLabel = styled.div`
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #fff;
+  backdrop-filter: blur(4px);
+`;
+
+/* Fonksiyonel kart komponenti */
+const CollectionCard = ({ label, src }) => (
+  <CollectionCardShell>
+    <CollectionImageWrapper>
+      <NeosImage src={src} alt={label} />
+    </CollectionImageWrapper>
+    <CollectionLabel>{label}</CollectionLabel>
+  </CollectionCardShell>
+);
