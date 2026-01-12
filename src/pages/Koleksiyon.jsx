@@ -1,77 +1,92 @@
-// src/pages/Koleksiyon.jsx
 import React from "react";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-/** Ortak resim component'i – hepsi lazy yüklenecek */
-const NeosImage = ({ className, style, ...rest }) => (
-  <img
-    loading="lazy"
-    decoding="async"
-    className={className}
-    style={{ display: "block", ...style }}
-    {...rest}
-  />
-);
+/* ==== GÖRSELLER ==== */
+const womenImages = [
+  "/images/kadin/kadin1.jpeg",
+  "/images/kadin/kadin2.jpeg",
+  "/images/kadin/kadin3.jpeg",
+  "/images/kadin/kadin4.jpeg",
+  "/images/kadin/kadin5.jpeg",
+  "/images/kadin/kadin6.jpeg",
+  "/images/kadin/kadin7.jpeg",
+  "/images/kadin/kadin8.jpeg",
+  "/images/kadin/kadin9.jpeg",
+  "/images/kadin/kadin10.jpeg",
+  "/images/kadin/kadin11.jpeg",
+  "/images/kadin/kadin12.jpeg",
+  "/images/kadin/kadin13.jpeg",
+  "/images/kadin/kadin14.jpeg",
+  "/images/kadin/kadin15.jpeg",
+  "/images/kadin/kadin16.jpeg",
+];
+
+const kidsImages = [
+  "/images/cocuk/cocuk1.jpeg",
+  "/images/cocuk/cocuk2.jpeg",
+  "/images/cocuk/cocuk3.jpeg",
+  "/images/cocuk/cocuk4.jpeg",
+  "/images/cocuk/cocuk5.jpeg",
+  "/images/cocuk/cocuk6.jpeg",
+  "/images/cocuk/cocuk7.jpeg",
+  "/images/cocuk/cocuk8.jpeg",
+  "/images/cocuk/cocuk9.jpeg",
+  "/images/cocuk/cocuk10.jpeg",
+  "/images/cocuk/cocuk11.jpeg",
+  "/images/cocuk/cocuk12.jpeg",
+];
 
 const Koleksiyon = () => {
-  // Buradaki diziye sadece kendi resim path'lerini ve metinlerini uyarlaman yeterli.
-  const products = [
-    {
-      id: 1,
-      name: "Çocuk Siyah Termal Bot",
-      desc: "Gün boyu sıcaklık ve hafiflik için tasarlandı.",
-      image: "/images/koleksiyon1.png", // kendi ismini kullan
-    },
-    {
-      id: 2,
-      name: "Kadın Kahverengi NEOS",
-      desc: "Şehir stiline uyum sağlayan, kaymaz tabanlı model.",
-      image: "/images/koleksiyon2.png",
-    },
-    {
-      id: 3,
-      name: "Krem Cozy Model",
-      desc: "Yumuşak iç astarıyla maksimum konfor.",
-      image: "/images/koleksiyon3.png",
-    },
-    // İstersen daha fazla ürün ekle
-  ];
-
   return (
     <Page>
       <Navbar />
 
-      <Main>
-        <Header>
-          <Overline>ÖNE ÇIKAN MODELLER</Overline>
-          <Title>NEOS KOLEKSİYONU</Title>
-          <Subtitle>
-            Her adımda konfor, her detayda mühendislik. Farklı hava koşulları
-            ve stiller için tasarlanan seçili NEOS modelleri.
-          </Subtitle>
-        </Header>
+      <Inner>
+        {/* KADIN VİTRİNİ */}
+        <Section>
+          <SectionHead>
+            <SectionTitle>Kadın Koleksiyonu</SectionTitle>
+            <SectionSub>
+              Zarif, cozy ve dayanıklı kadın botları.
+            </SectionSub>
+            <ScrollHint>Kaydırarak koleksiyonu keşfet →</ScrollHint>
+          </SectionHead>
 
-        <Grid>
-          {products.map((product) => (
-            <ProductCard key={product.id}>
-              <ImageFrame>
-                {/* Bot görseli – kırpmasın diye contain + alt tarafa biraz ağırlık */}
-                <BootImage
-                  src={product.image}
-                  alt={product.name}
-                />
-              </ImageFrame>
+          <FilmStrip>
+            <StripContent>
+              {womenImages.map((src, i) => (
+                <StripItem key={i}>
+                  <img src={src} alt={`Kadın bot ${i + 1}`} />
+                </StripItem>
+              ))}
+            </StripContent>
+          </FilmStrip>
+        </Section>
 
-              <CardBody>
-                <ProductName>{product.name}</ProductName>
-                <ProductDesc>{product.desc}</ProductDesc>
-              </CardBody>
-            </ProductCard>
-          ))}
-        </Grid>
-      </Main>
+        {/* ÇOCUK VİTRİNİ */}
+        <Section>
+          <SectionHead>
+            <SectionTitle>Çocuk Koleksiyonu</SectionTitle>
+            <SectionSub>
+              Küçük adımlar için hafif, yumuşak ve oyun temposuna uyumlu
+              çocuk botları.
+            </SectionSub>
+            <ScrollHint>Kaydırarak koleksiyonu keşfet →</ScrollHint>
+          </SectionHead>
+
+          <FilmStrip>
+            <StripContent>
+              {kidsImages.map((src, i) => (
+                <StripItem key={i}>
+                  <img src={src} alt={`Çocuk botu ${i + 1}`} />
+                </StripItem>
+              ))}
+            </StripContent>
+          </FilmStrip>
+        </Section>
+      </Inner>
 
       <Footer />
     </Page>
@@ -80,122 +95,240 @@ const Koleksiyon = () => {
 
 export default Koleksiyon;
 
-/* ================== STYLES ================== */
+/* =============== STYLES =============== */
 
 const Page = styled.div`
-  background: #fdfaf7;
+  background: #faf7f2;
   min-height: 100vh;
 `;
 
-const Main = styled.main`
-  padding: 120px 10% 90px;
+const Inner = styled.main`
+  padding: 96px 6% 120px;
 
   @media (max-width: 768px) {
-    padding: 100px 6% 70px;
+    padding: 84px 5% 100px;
   }
 `;
 
-const Header = styled.header`
-  text-align: center;
-  margin-bottom: 48px;
+const Section = styled.section`
+  margin-bottom: 90px;
+
+  @media (max-width: 768px) {
+    margin-bottom: 70px;
+  }
 `;
 
-const Overline = styled.div`
-  font-size: 0.78rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #b98c5b;
-  font-weight: 600;
+const SectionHead = styled.div`
+  margin-bottom: 26px;
+`;
+
+const SectionTitle = styled.h2`
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #1a1a1a;
   margin-bottom: 10px;
-`;
-
-const Title = styled.h1`
-  font-size: clamp(2.1rem, 4vw, 2.8rem);
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  margin-bottom: 16px;
-`;
-
-const Subtitle = styled.p`
-  max-width: 640px;
-  margin: 0 auto;
-  font-size: 0.98rem;
-  line-height: 1.8;
-  color: #6b7280;
-`;
-
-/* GRID */
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 34px;
-
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 680px) {
-    grid-template-columns: 1fr;
-  }
-`;
-
-
-const ProductCard = styled.article`
-  background: #f5ede0;
-  border-radius: 32px;
-  padding: 20px 18px 22px;
-  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
-  display: flex;
-  flex-direction: column;
-`;
-
-/* Dış çerçeve (gördüğün krem + noktalı yapı) */
-const ImageFrame = styled.div`
   position: relative;
-  width: 100%;
-  aspect-ratio: 2 / 3;   /* daha editorial */
-  border-radius: 26px;
-  background: #f9f5ee;
-  overflow: hidden;
-  padding: 12px;
-  margin-bottom: 16px;
+  display: inline-block;
+  padding-bottom: 6px;
 
-  &::before {
+  /* turuncu çizgi */
+  &::after {
     content: "";
     position: absolute;
-    inset: 10px;
-    border-radius: 20px;
-    border: 2px dotted rgba(148, 124, 96, 0.35);
-    pointer-events: none;
+    left: 0;
+    bottom: 0;
+    width: 52px;
+    height: 3px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #f97316, #ea580c);
   }
 `;
 
-
-/* Asıl bot görseli */
-const BootImage = styled(NeosImage)`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 85%;
+const SectionSub = styled.p`
+  color: #6b6b6b;
+  max-width: 440px;
+  font-size: 0.95rem;
+  line-height: 1.7;
 `;
 
+const ScrollHint = styled.div`
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #9a6a3b;
+  opacity: 0.9;
 
-/* Kart metinleri */
-
-const CardBody = styled.div`
-  margin-top: 18px;
+  @media (min-width: 769px) {
+    display: none;
+  }
 `;
 
-const ProductName = styled.h3`
-  font-size: 1rem;
-  font-weight: 800;
-  color: #1f2933;
-  margin-bottom: 6px;
+/* ==== FİLM ŞERİDİ ==== */
+
+const FilmStrip = styled.div`
+  position: relative;
+  background: radial-gradient(
+    circle at top left,
+    #f5e6d9 0,
+    #efe0d2 40%,
+    #e0d2c2 100%
+  );
+  border-radius: 26px;
+  padding: 26px 18px;
+  box-shadow: 0 18px 45px rgba(121, 87, 54, 0.16);
+  overflow: hidden;
+
+  /* üst ve alt film delikleri */
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    height: 8px;
+    background-image: radial-gradient(
+      circle,
+      rgba(15, 23, 42, 0.55) 2px,
+      transparent 2px
+    );
+    background-size: 16px 8px;
+    background-repeat: repeat-x;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  &::before {
+    top: 9px;
+  }
+
+  &::after {
+    bottom: 9px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 22px 14px;
+
+    &::before,
+    &::after {
+      left: 14px;
+      right: 14px;
+      background-size: 14px 8px;
+    }
+  }
 `;
 
-const ProductDesc = styled.p`
-  font-size: 0.9rem;
-  color: #6b7280;
-  line-height: 1.6;
+/* otomatik hafif kayma için keyframes */
+const StripContent = styled.div`
+  display: grid;
+  grid-auto-flow: column; /* yatay akış */
+  grid-auto-columns: minmax(190px, 1fr);
+  grid-template-rows: repeat(2, 180px); /* desktop/tablet: 2 sıra */
+  gap: 12px;
+
+  overflow-x: auto;
+  padding: 8px 4px 10px;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+
+  /* sayfa açılınca hafif sola kayma animasyonu (otomatik) */
+  animation: nudgeScroll 2.3s ease-out 0.8s 1;
+
+  &::-webkit-scrollbar {
+    height: 7px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(15, 23, 42, 0.28);
+    border-radius: 999px;
+  }
+
+  /* Tablet */
+  @media (max-width: 1024px) {
+    grid-auto-columns: minmax(210px, 1fr);
+    grid-template-rows: repeat(2, 190px);
+  }
+
+  /* Mobil: tek sıra, büyük kartlar */
+  @media (max-width: 768px) {
+    grid-auto-columns: 82vw;
+    grid-template-rows: 230px; /* tek satır */
+    gap: 16px;
+    scroll-snap-type: x mandatory;
+  }
+
+  /* Küçük telefonlar */
+  @media (max-width: 520px) {
+    grid-auto-columns: 88vw;
+    grid-template-rows: 240px;
+  }
+    /* ==== MOBİL SCROLLBAR ==== */
+@media (max-width: 768px) {
+  overflow-x: scroll;
+  scrollbar-width: thick; /* Firefox */
+  scrollbar-color: #B36B2A #F2E5D3; /* thumb / track */
+}
+@media (max-width: 768px) {
+  &::-webkit-scrollbar {
+    height: 10px;   /* daha kalın */
+    background: #F2E5D3;  /* track */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #B36B2A; /* thumb */
+    border-radius: 999px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #934A1B; /* hover koyulaşsın */
+  }
+}
+@media (max-width: 768px) {
+  scrollbar-gutter: stable both-edges;
+}
+
+
+  @keyframes nudgeScroll {
+    0% {
+      transform: translateX(0);
+    }
+    60% {
+      transform: translateX(-40px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+`;
+
+const StripItem = styled.div`
+  scroll-snap-align: start;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #e0d5c9;
+  position: relative;
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.18);
+  transform-origin: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition:
+      transform 0.45s ease,
+      filter 0.45s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.07);
+    filter: saturate(1.05) contrast(1.02);
+  }
+
+  /* dokunmatik cihazlarda basınca hafif zoom */
+  @media (hover: none) {
+    &:active img {
+      transform: scale(1.04);
+    }
+  }
 `;
