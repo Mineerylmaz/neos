@@ -49,8 +49,7 @@ const Koleksiyon = () => {
           <SectionHead>
             <SectionTitle>Kadın Koleksiyonu</SectionTitle>
             <SectionSub>
-              Zarif, cozy ve dayanıklı kadın botları. Bu sayfa yalnızca vitrin;
-              sadece görsel ilham için tasarlandı.
+              Zarif, cozy ve dayanıklı kadın botları.
             </SectionSub>
             <ScrollHint>Kaydırarak koleksiyonu keşfet →</ScrollHint>
           </SectionHead>
@@ -72,7 +71,7 @@ const Koleksiyon = () => {
             <SectionTitle>Çocuk Koleksiyonu</SectionTitle>
             <SectionSub>
               Küçük adımlar için hafif, yumuşak ve oyun temposuna uyumlu
-              çocuk botları. Tamamen vitrinsel, film şeridi hissinde.
+              çocuk botları.
             </SectionSub>
             <ScrollHint>Kaydırarak koleksiyonu keşfet →</ScrollHint>
           </SectionHead>
