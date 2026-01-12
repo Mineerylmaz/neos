@@ -58,7 +58,12 @@ const Koleksiyon = () => {
             <StripContent>
               {womenImages.map((src, i) => (
                 <StripItem key={i}>
-                  <img src={src} alt={`Kadın bot ${i + 1}`} />
+                  <img
+                    src={src}
+                    alt={`Kadın bot ${i + 1}`}
+                    loading="lazy"       // 👈 lazy loading
+                    decoding="async"
+                  />
                 </StripItem>
               ))}
             </StripContent>
@@ -80,7 +85,12 @@ const Koleksiyon = () => {
             <StripContent>
               {kidsImages.map((src, i) => (
                 <StripItem key={i}>
-                  <img src={src} alt={`Çocuk botu ${i + 1}`} />
+                  <img
+                    src={src}
+                    alt={`Çocuk botu ${i + 1}`}
+                    loading="lazy"       // 👈 lazy loading
+                    decoding="async"
+                  />
                 </StripItem>
               ))}
             </StripContent>
@@ -131,7 +141,6 @@ const SectionTitle = styled.h2`
   display: inline-block;
   padding-bottom: 6px;
 
-  /* turuncu çizgi */
   &::after {
     content: "";
     position: absolute;
@@ -177,7 +186,6 @@ const FilmStrip = styled.div`
   box-shadow: 0 18px 45px rgba(121, 87, 54, 0.16);
   overflow: hidden;
 
-  /* üst ve alt film delikleri */
   &::before,
   &::after {
     content: "";
@@ -216,20 +224,18 @@ const FilmStrip = styled.div`
   }
 `;
 
-/* otomatik hafif kayma için keyframes */
 const StripContent = styled.div`
   display: grid;
-  grid-auto-flow: column; /* yatay akış */
-  grid-auto-columns: minmax(190px, 1fr);
-  grid-template-rows: repeat(2, 180px); /* desktop/tablet: 2 sıra */
-  gap: 12px;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(230px, 1fr);   /* 👈 genişlik arttı */
+  grid-template-rows: repeat(2, 230px);    /* 👈 yükseklik büyüdü (daha çok alan) */
+  gap: 14px;
 
   overflow-x: auto;
-  padding: 8px 4px 10px;
+  padding: 10px 4px 12px;
   scroll-snap-type: x proximity;
   scrollbar-width: thin;
 
-  /* sayfa açılınca hafif sola kayma animasyonu (otomatik) */
   animation: nudgeScroll 2.3s ease-out 0.8s 1;
 
   &::-webkit-scrollbar {
@@ -245,48 +251,47 @@ const StripContent = styled.div`
 
   /* Tablet */
   @media (max-width: 1024px) {
-    grid-auto-columns: minmax(210px, 1fr);
-    grid-template-rows: repeat(2, 190px);
+    grid-auto-columns: minmax(220px, 1fr);
+    grid-template-rows: repeat(2, 240px);
   }
 
   /* Mobil: tek sıra, büyük kartlar */
   @media (max-width: 768px) {
-    grid-auto-columns: 82vw;
-    grid-template-rows: 230px; /* tek satır */
-    gap: 16px;
+    grid-auto-columns: 85vw;
+    grid-template-rows: 280px;   /* 👈 mobilde daha yüksek */
+    gap: 18px;
     scroll-snap-type: x mandatory;
   }
 
-  /* Küçük telefonlar */
   @media (max-width: 520px) {
-    grid-auto-columns: 88vw;
-    grid-template-rows: 240px;
-  }
-    /* ==== MOBİL SCROLLBAR ==== */
-@media (max-width: 768px) {
-  overflow-x: scroll;
-  scrollbar-width: thick; /* Firefox */
-  scrollbar-color: #B36B2A #F2E5D3; /* thumb / track */
-}
-@media (max-width: 768px) {
-  &::-webkit-scrollbar {
-    height: 10px;   /* daha kalın */
-    background: #F2E5D3;  /* track */
+    grid-auto-columns: 90vw;
+    grid-template-rows: 300px;   /* küçük telefonda daha da büyük */
   }
 
-  &::-webkit-scrollbar-thumb {
-    background: #B36B2A; /* thumb */
-    border-radius: 999px;
+  /* ==== MOBİL SCROLLBAR ==== */
+  @media (max-width: 768px) {
+    overflow-x: scroll;
+    scrollbar-width: thick;
+    scrollbar-color: #b36b2a #f2e5d3;
   }
+  @media (max-width: 768px) {
+    &::-webkit-scrollbar {
+      height: 10px;
+      background: #f2e5d3;
+    }
 
-  &::-webkit-scrollbar-thumb:hover {
-    background: #934A1B; /* hover koyulaşsın */
+    &::-webkit-scrollbar-thumb {
+      background: #b36b2a;
+      border-radius: 999px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: #934a1b;
+    }
   }
-}
-@media (max-width: 768px) {
-  scrollbar-gutter: stable both-edges;
-}
-
+  @media (max-width: 768px) {
+    scrollbar-gutter: stable both-edges;
+  }
 
   @keyframes nudgeScroll {
     0% {
@@ -308,13 +313,13 @@ const StripItem = styled.div`
   background: #e0d5c9;
   position: relative;
   box-shadow: 0 10px 22px rgba(15, 23, 42, 0.18);
-  transform-origin: center;
 
   img {
     width: 100%;
     height: 100%;
     display: block;
     object-fit: cover;
+    object-position: center 85%;  /* 👈 kadrajı aşağı kaydır: botlar daha çok görünür */
     transition:
       transform 0.45s ease,
       filter 0.45s ease;
@@ -325,7 +330,6 @@ const StripItem = styled.div`
     filter: saturate(1.05) contrast(1.02);
   }
 
-  /* dokunmatik cihazlarda basınca hafif zoom */
   @media (hover: none) {
     &:active img {
       transform: scale(1.04);
