@@ -55,17 +55,22 @@ const Koleksiyon = () => {
 
           <FilmStrip>
             <StripContent>
-              {womenImages.map((src, i) => (
-                <StripItem key={i}>
-                  <img
-                    src={src}
-                    alt={`Kadın bot ${i + 1}`}
-                    loading="lazy"       // 👈 lazy loading
-                    decoding="async"
-                  />
-                </StripItem>
-              ))}
+              {womenImages.map((src, i) => {
+                if (i === 7) return null; // 8. görseli kaldır (index 7)
+                return (
+                  <StripItem key={i}>
+                    <img
+                      src={src}
+                      alt={`Kadın bot ${i + 1}`}
+                      loading="lazy"
+                      decoding="async"
+                      fetchpriority="low"
+                    />
+                  </StripItem>
+                );
+              })}
             </StripContent>
+
           </FilmStrip>
         </Section>
 
