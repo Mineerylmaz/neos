@@ -11,7 +11,7 @@ const Navbar = () => {
       <NavContainer>
         {/* LOGO */}
         <Logo to="/">
-          <LogoImg src="/images/navbar.png" alt="NEOS" />
+          <LogoImg src="/images/navbar.webp" alt="NEOS" />
 
         </Logo>
 
