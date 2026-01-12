@@ -79,7 +79,7 @@ const Hikayemiz = () => {
             />
           ) : (
             <Cover onClick={() => setShowVideo(true)}>
-              <img src="/images/kapak.png" alt="Video Kapak" />
+              <img src="/images/kapak.webp" alt="Video Kapak" />
               <PlayOverlay>
                 <Play size={34} />
               </PlayOverlay>
@@ -156,16 +156,11 @@ const HeroSection = styled.section`
 const HeroImageLayer = styled.div`
   position: absolute;
   inset: 0;
-  background-image: url("/images/hikayemiz.png");
-  background-repeat: no-repeat;
+  background-image: url("/images/hikayemiz.webp");
   background-color: #fdf5ee;
-
-  /* DESKTOP: görseli yatay olarak kaplasın, yüksekliği otomatik ayarlansın */
- background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center center;
-    overflow: hidden;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
 
   /* altta yumuşak geçiş */
   &::after {
@@ -188,6 +183,7 @@ const HeroImageLayer = styled.div`
     background-position: center top;
   }
 `;
+
 
 
 const HeroContent = styled.div`
