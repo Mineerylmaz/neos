@@ -32,12 +32,6 @@ const Hikayemiz = () => {
 
       {/* HERO */}
       <HeroSection>
-        {/* Artık background-image değil, gerçek <img> */}
-        <HeroImageLayer
-          src="/images/hikayemiz.webp"
-          alt="Hikayemiz görseli"
-          priority
-        />
         <HeroContent>
           <HeroKicker>Tarzı • Technical • Cozy • Fashion</HeroKicker>
           <HeroTitle>BİR ADIMIN HİKAYESİ</HeroTitle>
@@ -98,7 +92,6 @@ const Hikayemiz = () => {
             />
           ) : (
             <Cover onClick={() => setShowVideo(true)}>
-              {/* Kapak da NeosImage ile, lazy */}
               <NeosImage src="/images/kapak.webp" alt="Video Kapak" />
               <PlayOverlay>
                 <Play size={34} />
@@ -163,20 +156,19 @@ const PageWrapper = styled.div`
   color: #111827;
 `;
 
-/* HERO */
+/* HERO – parallax background */
 
 const HeroSection = styled.section`
   position: relative;
   padding-top: 96px; /* navbar yüksekliği */
-  min-height: 65vh;
+  min-height: 80vh;
   overflow: hidden;
 
-  /* kaydırmalı arka plan */
   background-image: url("/images/hikayemiz.webp");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  background-attachment: fixed; /* 👈 hem desktop hem mobilde sabit */
+  background-attachment: fixed; /* 👈 parallax efekti */
 
   /* altta yumuşak geçiş */
   &::after {
@@ -192,23 +184,6 @@ const HeroSection = styled.section`
       #fdfaf7 100%
     );
     pointer-events: none;
-  }
-`;
-
-
-/* Artık background-image değil, gerçek <img> */
-const HeroImageLayer = styled(NeosImage)`
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center center;
-  opacity: 1;
-  
-
-  @media (max-width: 768px) {
-    object-position: center top;
   }
 `;
 
@@ -300,7 +275,6 @@ const StoryBlock = styled.section`
 `;
 
 const StoryText = styled.div``;
-
 const StorySide = styled.div``;
 
 const StoryKicker = styled.div`
