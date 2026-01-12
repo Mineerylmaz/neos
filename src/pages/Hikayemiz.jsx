@@ -7,6 +7,22 @@ import { Play } from "lucide-react";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 
+/** Ortak resim component'i
+ *  - priority = true → hero, ilk ekranda görünenler (eager)
+ *  - diğerleri → lazy
+ */
+const NeosImage = ({ src, alt, priority = false, className, ...rest }) => (
+  <img
+    src={src}
+    alt={alt}
+    loading={priority ? "eager" : "lazy"}
+    decoding="async"
+    className={className}
+    style={{ display: "block" }}
+    {...rest}
+  />
+);
+
 const Hikayemiz = () => {
   const [showVideo, setShowVideo] = useState(false);
 
@@ -16,7 +32,12 @@ const Hikayemiz = () => {
 
       {/* HERO */}
       <HeroSection>
-        <HeroImageLayer />
+        {/* Artık background-image değil, gerçek <img> */}
+        <HeroImageLayer
+          src="/images/hikayemiz.webp"
+          alt="Hikayemiz görseli"
+          priority
+        />
         <HeroContent>
           <HeroKicker>Tarzı • Technical • Cozy • Fashion</HeroKicker>
           <HeroTitle>BİR ADIMIN HİKAYESİ</HeroTitle>
@@ -56,8 +77,6 @@ const Hikayemiz = () => {
             dönüştürür.
           </StoryBody>
         </StoryText>
-
-        {/* İkinci kolonda sadece boşluk / denge için kullanıyoruz */}
         <StorySide />
       </StoryBlock>
 
@@ -79,7 +98,8 @@ const Hikayemiz = () => {
             />
           ) : (
             <Cover onClick={() => setShowVideo(true)}>
-              <img src="/images/kapak.webp" alt="Video Kapak" />
+              {/* Kapak da NeosImage ile, lazy */}
+              <NeosImage src="/images/kapak.webp" alt="Video Kapak" />
               <PlayOverlay>
                 <Play size={34} />
               </PlayOverlay>
@@ -143,26 +163,16 @@ const PageWrapper = styled.div`
   color: #111827;
 `;
 
-/* HERO – tam genişlikte görsel + üstte yazı */
+/* HERO */
 
 const HeroSection = styled.section`
   position: relative;
-  padding-top: 96px; /* navbar yüksekliği */
+  padding-top: 96px;
   min-height: 65vh;
   overflow: hidden;
   background: #fdf5ee;
-`;
 
-const HeroImageLayer = styled.div`
-  position: absolute;
-  inset: 0;
-  background-image: url("/images/hikayemiz.webp");
-  background-color: #fdf5ee;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-
-  /* altta yumuşak geçiş */
+  /* altta yumuşak geçiş artık burada */
   &::after {
     content: "";
     position: absolute;
@@ -175,16 +185,24 @@ const HeroImageLayer = styled.div`
       rgba(253, 245, 238, 0) 0%,
       #fdfaf7 100%
     );
-  }
-
-  /* MOBİL: ekranı doldursun, biraz kırpma kabul */
-  @media (max-width: 768px) {
-    background-size: cover;
-    background-position: center top;
+    pointer-events: none;
   }
 `;
 
+/* Artık background-image değil, gerçek <img> */
+const HeroImageLayer = styled(NeosImage)`
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  opacity: 1;
 
+  @media (max-width: 768px) {
+    object-position: center top;
+  }
+`;
 
 const HeroContent = styled.div`
   position: relative;
@@ -251,7 +269,7 @@ const ManifestoBody = styled.p`
   color: #6b7280;
 `;
 
-/* STORY BLOCK – yazılar yan yana */
+/* STORY BLOCK */
 
 const StoryBlock = styled.section`
   max-width: 1100px;
@@ -275,9 +293,7 @@ const StoryBlock = styled.section`
 
 const StoryText = styled.div``;
 
-const StorySide = styled.div`
-  /* Sadece denge için boş kolon, istersek ileride görsel koyarız */
-`;
+const StorySide = styled.div``;
 
 const StoryKicker = styled.div`
   font-size: 0.76rem;
