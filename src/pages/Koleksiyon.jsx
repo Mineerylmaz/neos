@@ -126,20 +126,20 @@ const Subtitle = styled.p`
 
 /* GRID */
 
-const Grid = styled.section`
-  margin-top: 32px;
+const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 28px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 34px;
 
   @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 680px) {
     grid-template-columns: 1fr;
   }
 `;
+
 
 const ProductCard = styled.article`
   background: #f5ede0;
@@ -154,32 +154,32 @@ const ProductCard = styled.article`
 const ImageFrame = styled.div`
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3; /* oran sabit */
+  aspect-ratio: 2 / 3;   /* daha editorial */
   border-radius: 26px;
   background: #f9f5ee;
   overflow: hidden;
-  padding: 10px;
+  padding: 12px;
+  margin-bottom: 16px;
 
-  /* Noktalı kenarlık */
   &::before {
     content: "";
     position: absolute;
     inset: 10px;
     border-radius: 20px;
-    border: 2px dotted rgba(148, 124, 96, 0.45);
+    border: 2px dotted rgba(148, 124, 96, 0.35);
     pointer-events: none;
   }
 `;
 
+
 /* Asıl bot görseli */
 const BootImage = styled(NeosImage)`
-  position: relative;
-  z-index: 1;
   width: 100%;
   height: 100%;
-  object-fit: contain;          /* kırpma yok */
-  object-position: center 80%;  /* biraz aşağı kaydır, botlar tam görünsün */
+  object-fit: cover;
+  object-position: center 85%;
 `;
+
 
 /* Kart metinleri */
 
