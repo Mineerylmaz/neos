@@ -1,8 +1,25 @@
+// src/pages/Tasarim.jsx
 import React from "react";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
+
+/** Ortak resim component'i
+ *  - Hepsi lazy yüklenecek
+ *  - İleride istersen priority prop'u ekleyip bazılarını eager yapabiliriz
+ */
+const NeosImage = ({ src, alt, className, ...rest }) => (
+  <img
+    src={src}
+    alt={alt}
+    loading="lazy"
+    decoding="async"
+    className={className}
+    style={{ display: "block" }}
+    {...rest}
+  />
+);
 
 const Tasarim = () => {
   return (
@@ -30,7 +47,6 @@ const Tasarim = () => {
             Hikayemiz
           </ButtonSecondary>
         </HeroButtons>
-
       </Hero>
 
       {/* BÖLÜM — BULUT KONFORU */}
@@ -58,7 +74,10 @@ const Tasarim = () => {
         </DetailContent>
 
         <DetailVisual>
-          <DetailVisualImg src="/images/hero-detail.png" alt="detail" />
+          <DetailVisualImg
+            src="/images/hero-detail.webp"
+            alt="Konfor detayı"
+          />
         </DetailVisual>
       </DetailSection>
 
@@ -75,7 +94,7 @@ const Tasarim = () => {
 
         <Grid>
           <GridCard>
-            <GridImg src="/images/material1.png" />
+            <GridImg src="/images/material1.webp" alt="Suya dayanıklı doku" />
             <GridCardTitle>Suya Dayanıklı Doku</GridCardTitle>
             <GridCardText>
               Hidrofobik yüzey işleminden geçen dış malzeme suyu iter,
@@ -84,7 +103,7 @@ const Tasarim = () => {
           </GridCard>
 
           <GridCard>
-            <GridImg src="/images/material2.png" />
+            <GridImg src="/images/material2.webp" alt="Isısal içlik" />
             <GridCardTitle>Isısal İçlik</GridCardTitle>
             <GridCardText>
               Termal tekstil, ısının ayak çevresinde daha uzun süre
@@ -93,8 +112,11 @@ const Tasarim = () => {
           </GridCard>
 
           <GridCard>
-            {/* taban foto: kırpmasın diye 'tall' class'ı */}
-            <GridImg src="/images/material3.png" className="tall" />
+            <GridImg
+              src="/images/material3.webp"
+              alt="Kaymaz taban"
+              className="tall"
+            />
             <GridCardTitle>Kaymaz Taban</GridCardTitle>
             <GridCardText>
               Özel kauçuk bazlı taban yapısı zemin tutuşunu artırır ve kaymayı
@@ -126,7 +148,6 @@ const Hero = styled.section`
   padding: 130px 6% 90px;
   min-height: 80vh;
 
-  /* grid background */
   background-color: #fdfdfb;
   background-image:
     linear-gradient(
@@ -206,7 +227,6 @@ const ButtonPrimary = styled(Link)`
   }
 `;
 
-
 const ButtonSecondary = styled(Link)`
   background: transparent;
   color: #111;
@@ -225,25 +245,11 @@ const ButtonSecondary = styled(Link)`
   }
 `;
 
-
-/* (ProductSection kullanılmıyorsa silebilirsin) */
-const ProductSection = styled.section`
-  display: flex;
-  justify-content: center;
-  margin-top: -20px;
-`;
-
-const ProductImage = styled.img`
-  width: 70%;
-  max-width: 900px;
-  border-radius: 18px;
-`;
-
-/* DETAIL ve GRID arası boşluğu azalttım */
+/* DETAIL ve GRID arası boşluk */
 const DetailSection = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 80px 6% 35px; /* alt padding: 60 → 35 */
+  padding: 80px 6% 35px;
   gap: 48px;
 
   @media (max-width: 820px) {
@@ -303,18 +309,20 @@ const DetailVisual = styled.div`
   justify-content: center;
 `;
 
-const DetailVisualImg = styled.img`
+const DetailVisualImg = styled(NeosImage)`
   width: 90%;
   border-radius: 14px;
 `;
 
+/* GRID */
+
 const GridSection = styled.section`
-  padding: 30px 6% 120px; /* üst padding: 50 → 30 */
+  padding: 30px 6% 120px;
 `;
 
 const GridHeader = styled.div`
   text-align: center;
-  margin-bottom: 36px; /* 40 → 36 */
+  margin-bottom: 36px;
 `;
 
 const Grid = styled.div`
@@ -329,7 +337,7 @@ const Grid = styled.div`
 
 const GridCard = styled.div``;
 
-const GridImg = styled.img`
+const GridImg = styled(NeosImage)`
   width: 100%;
   height: 240px;
   object-fit: cover;
