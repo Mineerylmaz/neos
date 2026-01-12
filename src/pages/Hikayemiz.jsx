@@ -167,12 +167,18 @@ const PageWrapper = styled.div`
 
 const HeroSection = styled.section`
   position: relative;
-  padding-top: 96px;
+  padding-top: 96px; /* navbar yüksekliği */
   min-height: 65vh;
   overflow: hidden;
-  background: #fdf5ee;
 
-  /* altta yumuşak geçiş artık burada */
+  /* kaydırmalı arka plan */
+  background-image: url("/images/hikayemiz.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed; /* 👈 hem desktop hem mobilde sabit */
+
+  /* altta yumuşak geçiş */
   &::after {
     content: "";
     position: absolute;
@@ -189,6 +195,7 @@ const HeroSection = styled.section`
   }
 `;
 
+
 /* Artık background-image değil, gerçek <img> */
 const HeroImageLayer = styled(NeosImage)`
   position: absolute;
@@ -198,6 +205,7 @@ const HeroImageLayer = styled(NeosImage)`
   object-fit: cover;
   object-position: center center;
   opacity: 1;
+  
 
   @media (max-width: 768px) {
     object-position: center top;
