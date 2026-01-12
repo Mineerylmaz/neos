@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ShieldCheck, Droplets, Wind, ChevronRight } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   // Farklı renk bot görsellerin
@@ -19,7 +20,7 @@ const Home = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % heroImages.length);
-    }, 4000); // 5 sn
+    }, 3000); // 5 sn
 
     return () => clearInterval(interval);
   }, [heroImages.length]);
@@ -75,9 +76,10 @@ const Home = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.3 }}
             >
-              <PrimaryButton>
+              <PrimaryButton as={Link} to="/koleksiyon">
                 KOLEKSİYONU GÖR <ChevronRight size={18} />
               </PrimaryButton>
+
             </ButtonGroup>
           </HeroTextContent>
         </HeroInner>
@@ -138,8 +140,10 @@ const Home = () => {
       <CollectionSection>
         <div className="title-row">
           <h2>ÖNE ÇIKAN KOLEKSİYONLAR</h2>
-          <span className="view-all">TÜMÜNÜ GÖR</span>
+          <ViewAll to="/koleksiyon">TÜMÜNÜ GÖR</ViewAll>
+
         </div>
+
 
         <CardGrid>
           <CollectionCard
@@ -170,6 +174,15 @@ const PageContainer = styled.div`
   width: 100%;
   background: #ffffff;
 `;
+const ViewAll = styled(Link)`
+  font-weight: 700;
+  font-size: 0.85rem;
+  border-bottom: 2px solid #000;
+  cursor: pointer;
+  text-decoration: none;
+  color: #111;
+`;
+
 
 /* HERO */
 

@@ -9,8 +9,11 @@ const Navbar = () => {
   return (
     <Nav>
       <NavContainer>
+        {/* LOGO */}
+        <Logo to="/">
+          <LogoImg src="/images/navbar.png" alt="NEOS" />
 
-        <Logo to="/">NEOS</Logo>
+        </Logo>
 
         <NavLinks className={isOpen ? "active" : ""}>
           <NavLink to="/" onClick={() => setIsOpen(false)}>
@@ -59,32 +62,53 @@ const Nav = styled.nav`
 const NavContainer = styled.div`
   max-width: 1400px;
   margin: 0 auto;
-  padding: 14px 6%;
+  padding: 8px 6%;           /* 14px → 8px  => navbar şişmesin */
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   @media (max-width: 968px) {
-    padding: 10px 5%;
+    padding: 4px 5%;         /* mobile’da daha az padding */
   }
 `;
 
-// LOGO artık Link
-const Logo = styled(Link)`
-  font-size: 1.6rem;
-  font-weight: 900;
-  color: #1a1a1a;
-  letter-spacing: 0.08em;
-  text-decoration: none;
-  cursor: pointer;
-  transition: color 0.3s ease;
-
-  &:hover {
-    color: #8b7355;
-  }
+/* LOGO GÖRSELİ */
+const LogoImg = styled.img`
+  height: 40px;              /* desktop için makul boy */
+  width: auto;
+  object-fit: contain;
+  display: block;
 
   @media (max-width: 968px) {
-    font-size: 1.4rem;
+    height: 48px;            /* mobile’da bilinçli olarak daha büyük */
+  }
+
+  @media (max-width: 520px) {
+    height: 52px;            /* çok küçük ekranlarda biraz daha büyüsün */
+  }
+`;
+
+
+/* LOGO WRAPPER */
+const Logo = styled(Link)`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+`;
+
+/* LOGO GÖRSELİ */
+
+
+/* İstersen yazılı kısmı tamamen kaldırabilirsin */
+const LogoText = styled.span`
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #1a1a1a;
+
+  @media (max-width: 968px) {
+    font-size: 0.95rem;
   }
 `;
 
@@ -119,7 +143,6 @@ const NavLinks = styled.div`
   }
 `;
 
-// BURASI ÖNEMLİ: styled.a değil styled(Link)
 const NavLink = styled(Link)`
   color: #3a3a3a;
   text-decoration: none;
@@ -196,5 +219,3 @@ const Overlay = styled.div`
     z-index: 999;
   }
 `;
-
-
