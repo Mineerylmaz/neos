@@ -106,7 +106,6 @@ const Contact = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              {/* Bornova konumuna yakın bir Google Maps embed (istersen değiştirirsin) */}
               <iframe
                 title="Konum"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3125.523364328996!2d27.23909857572539!3d38.429378571827684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b96338d1423f9b%3A0x9aa61d6824bfd841!2sEgemenlik%2C%206134.%20Sk.%20No%3A2%20D%3Ac%2C%2035070%20Bornova%2F%C4%B0zmir!5e0!3m2!1str!2str!4v1768295610154!5m2!1str!2str"
@@ -115,16 +114,14 @@ const Contact = () => {
               />
 
               <MapBadge
-                as="a"
-                href="https://maps.google.com/?q=Egemenlik+Mah.+6134+Sokak+No:2%2FC+Bornova+İzmir"
-
+                href="https://www.google.com/maps/search/?api=1&query=Egemenlik%20Mah.%206134.%20Sk.%20No%3A2%2FC%2C%2035070%20Bornova%2F%C4%B0zmir"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 KONUMU AÇ
               </MapBadge>
-
             </MapWrapper>
+
           </LeftColumn>
 
           {/* SAĞ BLOK – FORM */}
@@ -220,6 +217,7 @@ const MapBadge = styled.a`
     transform: translateY(-1px);
   }
 `;
+
 
 const ContactSection = styled.section`
   max-width: 1200px;
