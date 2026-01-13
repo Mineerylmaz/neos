@@ -8,177 +8,187 @@ import Footer from "../components/Footer";
 
 
 const Contact = () => {
-    return (
-        <PageWrapper>
-            <Navbar />
+  return (
+    <PageWrapper>
+      <Navbar />
 
-            <ContactSection>
-                <HeaderArea>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5 }}
-                    >
-                        BİZİMLE İLETİŞİME GEÇİN
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 10 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.5, delay: 0.1 }}
-                    >
-                        Technical + Cozy + Fashion felsefemizle her adımda yanınızdayız. <br />
-                        Sorularınız ve geri bildirimleriniz için bize her zaman ulaşabilirsiniz.
-                    </motion.p>
-                </HeaderArea>
+      <ContactSection>
+        <HeaderArea>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            BİZİMLE İLETİŞİME GEÇİN
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            Technical + Cozy + Fashion felsefemizle her adımda yanınızdayız. <br />
+            Sorularınız ve geri bildirimleriniz için bize her zaman ulaşabilirsiniz.
+          </motion.p>
+        </HeaderArea>
 
-                <ContentGrid>
-                    {/* SOL BLOK – İLETİŞİM KARTLARI & HARİTA */}
-                    <LeftColumn>
-                        <InfoCard
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                        >
-                            <InfoRow>
-                                <IconBubble>
-                                    <Mail size={18} />
-                                </IconBubble>
-                                <div>
-                                    <Label> DESTEK</Label>
-                                    <Value>ayakkabineos@gmail.com</Value>
-                                </div>
-                            </InfoRow>
+        <ContentGrid>
+          {/* SOL BLOK – İLETİŞİM KARTLARI & HARİTA */}
+          <LeftColumn>
+            <InfoCard
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <InfoRow>
+                <IconBubble>
+                  <Mail size={18} />
+                </IconBubble>
+                <div>
+                  <Label> DESTEK</Label>
+                  <Value>neosayakkabi@gmail.com</Value>
+                </div>
+              </InfoRow>
 
-                            <Divider />
+              <Divider />
 
-                            <InfoRow>
-                                <IconBubble>
-                                    <Phone size={18} />
-                                </IconBubble>
-                                <div>
-                                    <Label>TELEFON</Label>
-                                    <Value>0 (232) 436 45 27</Value>
-                                </div>
-                            </InfoRow>
+              <InfoRow>
+                <IconBubble>
+                  <Phone size={18} />
+                </IconBubble>
+                <div>
+                  <Label>TELEFON</Label>
+                  <Value>0 (232) 436 45 27</Value>
+                </div>
+              </InfoRow>
 
-                            <Divider />
+              <Divider />
 
-                            <InfoRow>
-                                <IconBubble>
-                                    <Phone size={18} />
-                                </IconBubble>
-                                <div>
-                                    <Label>GSM</Label>
-                                    <Value>0 (532) 200 39 78 – 0 (549) 600 92 70</Value>
-                                </div>
-                            </InfoRow>
+              <InfoRow>
+                <IconBubble>
+                  <Phone size={18} />
+                </IconBubble>
+                <div>
+                  <Label>GSM</Label>
+                  <Value>0 (532) 200 39 78 – 0 (549) 600 92 70</Value>
+                </div>
+              </InfoRow>
 
-                            <Divider />
+              <Divider />
 
-                            <InfoRow>
-                                <IconBubble>
-                                    <MapPin size={18} />
-                                </IconBubble>
-                                <div>
-                                    <Label>ATÖLYE &amp; MAĞAZA</Label>
-                                    <Value>Egemenlik Mah. 6134 Sokak No:2/C</Value>
-                                    <Value>Bornova / İzmir</Value>
-                                </div>
-                            </InfoRow>
+              <InfoRow>
+                <IconBubble>
+                  <MapPin size={18} />
+                </IconBubble>
+                <div>
+                  <Label>ATÖLYE &amp; MAĞAZA</Label>
+                  <Value>Egemenlik Mah. 6134 Sokak No:2/C</Value>
+                  <Value>Bornova / İzmir</Value>
+                </div>
+              </InfoRow>
 
-                            <Divider />
+              <Divider />
 
-                            <InfoRow>
-                                <IconBubble>
-                                    <Clock size={18} />
-                                </IconBubble>
-                                <div>
-                                    <Label>ÇALIŞMA SAATLERİ</Label>
-                                    <Value>Pzt – Cmt: 10:00 – 19:00</Value>
-                                </div>
-                            </InfoRow>
-                        </InfoCard>
+              <InfoRow>
+                <IconBubble>
+                  <Clock size={18} />
+                </IconBubble>
+                <div>
+                  <Label>ÇALIŞMA SAATLERİ</Label>
+                  <Value>Pzt – Cmt: 08:00 – 19:00</Value>
+                </div>
+              </InfoRow>
+            </InfoCard>
 
-                        <MapWrapper
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                        >
-                            {/* Bornova konumuna yakın bir Google Maps embed (istersen değiştirirsin) */}
-                            <iframe
-                                title="Konum"
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3136.554736210381!2d27.200!3d38.470!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14bbd8f3cxxxxxxxx%3A0xXXXXXXXXXXXXXXX!2sBornova%2C%20Izmir!5e0!3m2!1str!2str!4v0000000000000"
-                                loading="lazy"
-                                referrerPolicy="no-referrer-when-downgrade"
-                            />
-                            <MapBadge>KONUMU GÖRÜNTÜLE</MapBadge>
-                        </MapWrapper>
-                    </LeftColumn>
+            <MapWrapper
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              {/* Bornova konumuna yakın bir Google Maps embed (istersen değiştirirsin) */}
+              <iframe
+                title="Konum"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3125.523364328996!2d27.23909857572539!3d38.429378571827684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b96338d1423f9b%3A0x9aa61d6824bfd841!2sEgemenlik%2C%206134.%20Sk.%20No%3A2%20D%3Ac%2C%2035070%20Bornova%2F%C4%B0zmir!5e0!3m2!1str!2str!4v1768295610154!5m2!1str!2str"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
 
-                    {/* SAĞ BLOK – FORM */}
-                    <RightColumn
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <FormTitle>Mesaj Gönderin</FormTitle>
+              <MapBadge
+                as="a"
+                href="https://maps.google.com/?q=NEOS+Ayakkabı,+Egemenlik+Mah.+6134+Sokak+No:2%2FC+Bornova+İzmir"
 
-                        <Form
-                            action="https://formspree.io/f/xreegevg" // <-- buraya kendi Formspree ID'ni gir
-                            method="POST"
-                        >
-                            <FieldGroup>
-                                <Label>AD SOYAD</Label>
-                                <Input
-                                    type="text"
-                                    name="name"
-                                    placeholder="Adınız ve soyadınız"
-                                    required
-                                />
-                            </FieldGroup>
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                KONUMU AÇ
+              </MapBadge>
 
-                            <FieldGroup>
-                                <Label>E-POSTA ADRESİ</Label>
-                                <Input
-                                    type="email"
-                                    name="email"
-                                    placeholder="ornek@mail.com"
-                                    required
-                                />
-                            </FieldGroup>
+            </MapWrapper>
+          </LeftColumn>
+
+          {/* SAĞ BLOK – FORM */}
+          <RightColumn
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <FormTitle>Mesaj Gönderin</FormTitle>
+
+            <Form
+              action="https://formspree.io/f/xreegevg" // <-- buraya kendi Formspree ID'ni gir
+              method="POST"
+            >
+              <FieldGroup>
+                <Label>AD SOYAD</Label>
+                <Input
+                  type="text"
+                  name="name"
+                  placeholder="Adınız ve soyadınız"
+                  required
+                />
+              </FieldGroup>
+
+              <FieldGroup>
+                <Label>E-POSTA ADRESİ</Label>
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder="ornek@mail.com"
+                  required
+                />
+              </FieldGroup>
 
 
 
-                            <FieldGroup>
-                                <Label>MESAJINIZ</Label>
-                                <Textarea
-                                    name="message"
-                                    rows="5"
-                                    placeholder="Size nasıl yardımcı olabiliriz?"
-                                    required
-                                />
-                            </FieldGroup>
+              <FieldGroup>
+                <Label>MESAJINIZ</Label>
+                <Textarea
+                  name="message"
+                  rows="5"
+                  placeholder="Size nasıl yardımcı olabiliriz?"
+                  required
+                />
+              </FieldGroup>
 
-                            <ButtonRow>
-                                <SubmitButton type="submit">
-                                    GÖNDER <span>➝</span>
-                                </SubmitButton>
-                            </ButtonRow>
+              <ButtonRow>
+                <SubmitButton type="submit">
+                  GÖNDER <span>➝</span>
+                </SubmitButton>
+              </ButtonRow>
 
-                            <SmallText>
-                                İletişim formu aracılığıyla gönderdiğiniz bilgiler yalnızca size geri
-                                dönüş yapabilmek için kullanılacaktır.
-                            </SmallText>
-                        </Form>
-                    </RightColumn>
-                </ContentGrid>
-            </ContactSection>
+              <SmallText>
+                İletişim formu aracılığıyla gönderdiğiniz bilgiler yalnızca size geri
+                dönüş yapabilmek için kullanılacaktır.
+              </SmallText>
+            </Form>
+          </RightColumn>
+        </ContentGrid>
+      </ContactSection>
 
-            <Footer />
-        </PageWrapper>
-    );
+      <Footer />
+    </PageWrapper>
+  );
 };
 
 export default Contact;
@@ -190,14 +200,35 @@ const PageWrapper = styled.div`
   width: 100%;
   background: #f7f3f0;
 `;
+const MapBadge = styled.a`
+  position: absolute;
+  left: 18px;
+  bottom: 16px;
+  background: rgba(17, 24, 39, 0.85);
+  color: #ffffff;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: rgba(17, 24, 39, 1);
+    transform: translateY(-1px);
+  }
+`;
 
 const ContactSection = styled.section`
   max-width: 1200px;
   margin: 0 auto;
-  padding: 120px 8% 110px; /* fixed navbar için üst pay */
+  padding: 150px 8% 110px;
+
 
   @media (max-width: 992px) {
-    padding: 110px 6% 90px;
+    padding: 180px 6% 90px;
   }
 `;
 
@@ -310,19 +341,7 @@ const MapWrapper = styled(motion.div)`
   }
 `;
 
-const MapBadge = styled.div`
-  position: absolute;
-  left: 18px;
-  bottom: 16px;
-  background: rgba(17, 24, 39, 0.85);
-  color: #ffffff;
-  padding: 8px 16px;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-`;
+
 
 const RightColumn = styled(motion.div)`
   background: #ffffff;

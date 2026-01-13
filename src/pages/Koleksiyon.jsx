@@ -114,15 +114,19 @@ export default Koleksiyon;
 const Page = styled.div`
   background: #faf7f2;
   min-height: 100vh;
+ 
 `;
 
 const Inner = styled.main`
-  padding: 96px 6% 120px;
+  /* desktop / tablet için biraz daha aşağıdan başlasın */
+  padding: 130px 6% 120px;
 
   @media (max-width: 768px) {
-    padding: 84px 5% 100px;
+    /* mobilde navbar + büyük logo için ekstra boşluk */
+    padding: 150px 5% 100px;
   }
 `;
+
 
 const Section = styled.section`
   margin-bottom: 90px;

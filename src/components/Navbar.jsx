@@ -11,10 +11,10 @@ const Navbar = () => {
       <NavContainer>
         {/* LOGO */}
         <Logo to="/">
-          <LogoImg src="/images/navbar.webp" alt="NEOS" />
-
+          <LogoImg src="/images/nav.webp" alt="NEOS" />
         </Logo>
 
+        {/* NAV LİNKLERİ */}
         <NavLinks className={isOpen ? "active" : ""}>
           <NavLink to="/" onClick={() => setIsOpen(false)}>
             Anasayfa
@@ -33,8 +33,9 @@ const Navbar = () => {
           </NavLink>
         </NavLinks>
 
+        {/* HAMBURGER BUTON – mobilde sağ üstte floating */}
         <MenuButton onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          {isOpen ? <X size={22} /> : <Menu size={22} />}
         </MenuButton>
       </NavContainer>
 
@@ -52,7 +53,7 @@ const Nav = styled.nav`
   top: 0;
   width: 100%;
   height: auto;
-  background: rgba(232, 223, 213, 0.9);
+  background:#ffff;
   backdrop-filter: blur(10px);
   z-index: 1000;
   border-bottom: 1px solid rgba(181, 164, 141, 0.2);
@@ -60,47 +61,72 @@ const Nav = styled.nav`
 `;
 
 const NavContainer = styled.div`
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 8px 6%;           /* 14px → 8px  => navbar şişmesin */
+  width: 100%;
+  padding: 14px 6%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 36px;
 
   @media (max-width: 968px) {
-    padding: 4px 5%;         /* mobile’da daha az padding */
+    padding: 8px 4%;
+    gap: 12px;
   }
 `;
 
-/* LOGO GÖRSELİ */
+/* LOGO GÖRSELİ – desktop küçük, mobil geniş + hafif stretch */
 const LogoImg = styled.img`
-  height: 40px;              /* desktop için makul boy */
-  width: auto;
+  width: 180px;
+  height: auto;
   object-fit: contain;
-  display: block;
 
-  @media (max-width: 968px) {
-    height: 48px;            /* mobile’da bilinçli olarak daha büyük */
+  /* TABLET */
+  @media (max-width: 1024px) {
+    width: 200px;
   }
 
-  @media (max-width: 520px) {
-    height: 52px;            /* çok küçük ekranlarda biraz daha büyüsün */
+  /* MOBİL MID */
+  @media (max-width: 768px) {
+    width: 300px;
+    transform: scaleX(1.06);
+  }
+
+  /* MOBİL MID-SMALL */
+  @media (max-width: 600px) {
+    width: 330px;
+    transform: scaleX(1.08);
+  }
+
+  /* SMALL MOBİL */
+  @media (max-width: 430px) {
+    width: 350px;
+    transform: scaleX(1.1);
+  }
+
+  /* DAHA KÜÇÜK MOBİL */
+  @media (max-width: 380px) {
+    width: 360px;
+    transform: scaleX(1.12);
+  }
+
+  /* ULTRA SMALL */
+  @media (max-width: 340px) {
+    width: 370px;
+    transform: scaleX(1.12);
   }
 `;
-
 
 /* LOGO WRAPPER */
 const Logo = styled(Link)`
   display: flex;
   align-items: center;
-  gap: 8px;
-  text-decoration: none;
+  padding-left: 4px;
+
+  @media (max-width: 968px) {
+    padding-left: 0; /* mobilde net sola yaslı */
+  }
 `;
 
-/* LOGO GÖRSELİ */
-
-
-/* İstersen yazılı kısmı tamamen kaldırabilirsin */
+/* İstersen ilerde yazı eklemek için dursun */
 const LogoText = styled.span`
   font-size: 1.1rem;
   font-weight: 800;
@@ -116,8 +142,10 @@ const NavLinks = styled.div`
   display: flex;
   gap: 36px;
   align-items: center;
+  margin-left: auto;
 
   @media (max-width: 968px) {
+    margin-left: 0;
     position: fixed;
     top: 0;
     right: 0;
@@ -132,6 +160,7 @@ const NavLinks = styled.div`
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
     overflow-y: auto;
+    z-index: 1500;
 
     &.active {
       transform: translateX(0);
@@ -189,19 +218,24 @@ const NavLink = styled(Link)`
   }
 `;
 
+/* HAMBURGER – NAV içinde sağ üstte float */
 const MenuButton = styled.button`
   display: none;
-  background: rgba(255, 255, 255, 0.3);
+  position: absolute;
+  top: 70%;
+  right: 2%;
+  transform: translateY(0%);
+  background: rgba(255, 255, 255, 0.85);
   border: none;
   color: #1a1a1a;
   cursor: pointer;
   padding: 8px;
-  border-radius: 8px;
+  border-radius: 10px;
   transition: all 0.25s ease;
-  z-index: 1001;
+  z-index: 2000;
 
   &:hover {
-    background: rgba(139, 115, 85, 0.25);
+    background: rgba(139, 115, 85, 0.3);
   }
 
   @media (max-width: 968px) {
@@ -216,6 +250,6 @@ const Overlay = styled.div`
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    z-index: 1200;
   }
 `;

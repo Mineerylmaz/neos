@@ -56,23 +56,37 @@ const Hikayemiz = () => {
       <StoryBlock>
         <StoryText>
           <StoryKicker>ÖZ HİKÂYE</StoryKicker>
-          <StoryTitle>Zarafet ve Güvenin Buluşma Noktası</StoryTitle>
+          <StoryTitle>Emekten Doğan Zarafet</StoryTitle>
+
           <StoryBody>
-            NEOS, modern zamanın dinamik yapısını kadınlar ve çocukların
-            sınırsız hareket alanı ile buluşturur. Her bir detayda;
-            dayanıklılık, sıcaklık ve zarafet aynı potada buluşur. Yumuşak
-            dokular, uzun süreli konforu desteklerken, estetik çizgiler her
-            adımda zarafeti yeniden tanımlar.
+            NEOS’un hikâyesi, 1975 yılında Kemeraltı’nda usta-çırak geleneğiyle
+            başladı. Ailenin büyük ustası Necip Umaç, bu toprakların ayakkabı
+            kültürünü el emeğiyle öğrenirken; sabrın, titizliğin ve detayın
+            bir ayakkabının gerçek ruhu olduğunu keşfetti.
           </StoryBody>
+
           <StoryBody>
-            Kullanılan her materyal, seçilen her form birer niyet taşır.
-            NEOS kadınının ve çocuğunun güvende hissetmesini sağlayan her
-            adım, konforu sadece bir hissiyat değil; somut bir deneyime
-            dönüştürür.
+            1980’de kendi atölyesini kurmasıyla birlikte üretim, yalnızca bir
+            zanaat değil; aile içinde aktarılan bir mirasa dönüştü. Bugün
+            bu yolculuk, ikinci kuşak temsilcileri Osman Umaç ve Fatih Umaç
+            tarafından modern bir perspektifle sürdürülüyor.
+          </StoryBody>
+
+          <StoryBody>
+            Aynı çatı altında ayakkabı ve taban üretiminin gerçekleştiği
+            1.500 m²’lik üretim alanı, yıllık 600.000 çift kapasitesiyle
+            el işçiliğinin köklerini modern üretim gücüyle birleştiriyor.
+          </StoryBody>
+
+          <StoryBody>
+            Her çift ayakkabı; hareket özgürlüğü, sıcaklık ve
+            zarafetin sessizce kurulduğu bir deneyime dönüşür.
           </StoryBody>
         </StoryText>
+
         <StorySide />
       </StoryBlock>
+
 
       {/* ATÖLYE / VİDEO BLOĞU */}
       <AtolyeSection>

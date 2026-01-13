@@ -41,7 +41,7 @@ const Footer = () => {
 
           <ContactItem>
             <Mail />
-            <span>ayakkabineos@gmail.com</span>
+            <span>neosayakkabi@gmail.com</span>
           </ContactItem>
 
           <ContactItem>
@@ -67,7 +67,10 @@ const Footer = () => {
 
       <FooterBottom>
         <p>© 2026 Neos Ayakkabı. Tüm hakları saklıdır.</p>
+        <p>designed by mine eryılmaz
+        </p>
       </FooterBottom>
+
     </FooterContainer>
   );
 };
@@ -240,4 +243,10 @@ const FooterBottom = styled.div`
     font-size: 0.75rem;
     opacity: 0.75;
   }
+    p:last-child {
+  opacity: 0.7;
+  font-size: 0.82rem;
+  letter-spacing: 0.3px;
+}
+
 `;
