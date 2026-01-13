@@ -47,13 +47,11 @@ const Navbar = () => {
 export default Navbar;
 
 /* ============ STYLED COMPONENTS ============ */
-
 const Nav = styled.nav`
   position: fixed;
   top: 0;
   width: 100%;
-  height: auto;
-  background:#ffff;
+  background: #ffff;
   backdrop-filter: blur(10px);
   z-index: 1000;
   border-bottom: 1px solid rgba(181, 164, 141, 0.2);
@@ -66,63 +64,88 @@ const NavContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 36px;
+  justify-content: flex-start;        /* DESKTOP: logo solda, linkler sağda */
 
   @media (max-width: 968px) {
     padding: 8px 4%;
     gap: 12px;
+    justify-content: center;          /* MOBİLDE LOGO TAM ORTADA */
+    position: relative;
   }
 `;
 
-/* LOGO GÖRSELİ – desktop küçük, mobil geniş + hafif stretch */
+/* LOGO GÖRSELİ */
 const LogoImg = styled.img`
   width: 180px;
   height: auto;
   object-fit: contain;
 
-  /* TABLET */
   @media (max-width: 1024px) {
     width: 200px;
   }
 
-  /* MOBİL MID */
   @media (max-width: 768px) {
-    width: 300px;
-    transform: scaleX(1.06);
+    width: 260px;
+    transform: translateX(-10px) scaleX(1.04);   /* ↤ BİRAZ SOLA KAYDIR */
   }
 
-  /* MOBİL MID-SMALL */
   @media (max-width: 600px) {
-    width: 330px;
-    transform: scaleX(1.08);
+    width: 280px;
+    transform: translateX(-12px) scaleX(1.06);   /* DAHA KÜÇÜK TELEFONDA BİRAZ DAHA SOL */
   }
 
-  /* SMALL MOBİL */
   @media (max-width: 430px) {
-    width: 350px;
-    transform: scaleX(1.1);
+    width: 290px;
+    transform: translateX(-14px) scaleX(1.08);
   }
 
-  /* DAHA KÜÇÜK MOBİL */
   @media (max-width: 380px) {
-    width: 360px;
-    transform: scaleX(1.12);
+    width: 300px;
+    transform: translateX(-16px) scaleX(1.08);
   }
 
-  /* ULTRA SMALL */
   @media (max-width: 340px) {
-    width: 370px;
-    transform: scaleX(1.12);
+    width: 305px;
+    transform: translateX(-18px) scaleX(1.08);
   }
 `;
 
-/* LOGO WRAPPER */
 const Logo = styled(Link)`
   display: flex;
   align-items: center;
   padding-left: 4px;
+  margin-right: auto;                  /* DESKTOP: LOGO SOLDA, DİĞERLERİ SAĞA İTİLİR */
 
   @media (max-width: 968px) {
-    padding-left: 0; /* mobilde net sola yaslı */
+    padding-left: 0;
+    margin-right: 0;                   /* MOBİLDE ORTALAMA İÇİN NÖTRLE */
+  }
+`;
+
+/* HAMBURGER BUTON – SAĞ ÜSTE SABİT */
+const MenuButton = styled.button`
+  display: none;
+  position: absolute;
+  top: 50%;
+  right: 4%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  color: #1a1a1a;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+  z-index: 2000;
+
+  &:hover {
+    background: rgba(139, 115, 85, 0.3);
+  }
+
+  @media (max-width: 968px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -219,31 +242,7 @@ const NavLink = styled(Link)`
 `;
 
 /* HAMBURGER – NAV içinde sağ üstte float */
-const MenuButton = styled.button`
-  display: none;
-  position: absolute;
-  top: 70%;
-  right: 2%;
-  transform: translateY(0%);
-  background: rgba(255, 255, 255, 0.85);
-  border: none;
-  color: #1a1a1a;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 10px;
-  transition: all 0.25s ease;
-  z-index: 2000;
 
-  &:hover {
-    background: rgba(139, 115, 85, 0.3);
-  }
-
-  @media (max-width: 968px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-`;
 
 const Overlay = styled.div`
   @media (max-width: 968px) {
