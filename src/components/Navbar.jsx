@@ -126,7 +126,7 @@ const Logo = styled(Link)`
 const MenuButton = styled.button`
   display: none;
   position: absolute;
-  top: 50%;
+  top: 43%;
   right: 4%;
   transform: translateY(-50%);
   background: rgba(255, 255, 255, 0.9);
