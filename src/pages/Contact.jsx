@@ -116,7 +116,7 @@ const Contact = () => {
 
               <MapBadge
                 as="a"
-                href="https://maps.google.com/?q=NEOS+Ayakkabı,+Egemenlik+Mah.+6134+Sokak+No:2%2FC+Bornova+İzmir"
+                href="https://maps.google.com/?q=Egemenlik+Mah.+6134+Sokak+No:2%2FC+Bornova+İzmir"
 
                 target="_blank"
                 rel="noopener noreferrer"
